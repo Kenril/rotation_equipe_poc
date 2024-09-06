@@ -6,7 +6,7 @@ import munk.erik.impl.CalculRencontreSansDoublon;
 public class Main {
 
     public static void main(String[] args) {
-        new Affichage(new CalculRencontreSansDoublon());
+        Affichage affichage = new Affichage(new CalculRencontreSansDoublon());
     }
 
 }

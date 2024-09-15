@@ -7,6 +7,13 @@
     <groupId>munk.erik</groupId>
     <artifactId>calcul</artifactId>
     <version>1.0-SNAPSHOT</version>
+    <name>Générateur de rencontre sans duplication</name>
+    <organization>
+        <name>Erik Munk</name>
+        <url>https://www.linkedin.com/in/erik-munk-jakobsen/</url>
+    </organization>
+    <description>Outil de génération de tableau de rencontre sans doublon</description>
+    <inceptionYear>2024</inceptionYear>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
@@ -52,6 +59,46 @@
                         <goals>
                             <goal>shade</goal>
                         </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>com.akathist.maven.plugins.launch4j</groupId>
+                <artifactId>launch4j-maven-plugin</artifactId>
+                <version>2.5.1</version>
+                <executions>
+                    <execution>
+                        <id>l4j-clui</id>
+                        <phase>install</phase>
+                        <goals>
+                            <goal>launch4j</goal>
+                        </goals>
+                        <configuration>
+                            <headerType>gui</headerType>
+                            <jar>target/${project.artifactId}-${project.version}.jar</jar>
+                            <outfile>target/generateurRotation-${project.version}.exe</outfile>
+                            <errTitle>${project.name}</errTitle>
+                            <classPath>
+                                <mainClass>munk.erik.Main</mainClass>
+                            </classPath>
+                            <icon>src/main/resources/exchange.ico</icon>
+                            <jre>
+                                <path>C:\Users\erikw\.jdks\openjdk-22.0.2\bin</path> <!-- if you bundle the jre -->
+                            </jre>
+
+                            <versionInfo>
+                                <fileVersion>1.0.0.0</fileVersion>
+                                <txtFileVersion>${project.version}</txtFileVersion>
+                                <fileDescription>${project.description}</fileDescription>
+                                <copyright>(c) ${project.inceptionYear} Erik Munk</copyright>
+                                <productVersion>1.0.0.0</productVersion>
+                                <txtProductVersion>${project.version}</txtProductVersion>
+                                <productName>${project.name}</productName>
+                                <companyName>Erik Munk</companyName>
+                                <internalName>${project.name}</internalName>
+                                <originalFilename>${project.build.finalName}.exe</originalFilename>
+                            </versionInfo>
+                        </configuration>
                     </execution>
                 </executions>
             </plugin>
